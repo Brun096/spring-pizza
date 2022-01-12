@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="fragments/resources :: headTags"></div>
+		<title>Pizze</title>
+	</head>
+	<body>
+		<nav th:replace="fragments/navbar :: navbar('pizza')"></nav>
+		<div class="container">
+			<h1>Pizze</h1>
+			<hr/>
+			<div class="mb-3">
+				<a class="btn btn-primary" th:href="@{/pizza/create}">Add Book</a>
+			</div>
+			<table class="table" th:if="${list.size()>0}">
+				
+					<thead>
+					<tr>
+						<th>name</th>
+						<th>price</th>
+						<th>A</th>
+					
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${list}">
+						<td th:text="${item.name}"></td>
+						<td th:text="${item.price}"></td>
+						
+					</tr>
+				</tbody>
+			
+			</table>
+				<div class="alert alert-primary" role="alert" th:unless="${list.size() > 0}">
+			  There are no pizze in the database
+			</div>
+		</div>
+		<div th:replace="fragments/resources :: scripts"></div>
+	</body>
+</html>
